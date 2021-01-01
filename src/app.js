@@ -5,6 +5,7 @@ const hbs = require('hbs')
 const app = express()
 
 //Define paths
+const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
@@ -13,24 +14,28 @@ app.set('view engine', 'hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
+// Setup static directory to serve
+app.use(express.static(publicDirectoryPath))
+
 app.get('', (req, res) =>{
   res.render('index', {
-    title: 'tejasv app',
-    name: 'tejasv'    
+    title: 'Tejasv App',
+    name: 'Tejasv Agarwal'    
   })
 })
 
 app.get('/about', (req, res) =>{
   res.render('about', {
-    title: 'about me',
-    name: 'tejasv'    
+    title: 'About Me',
+    name: 'Tejasv Agarwal'    
   })
 })
 
 app.get('/help', (req, res) =>{
   res.render('help', {
-    title: 'help page',
-    message: 'welcome to the help page'    
+    helpText: 'This is some helpful text',
+    title: 'Help',
+    name: 'Tejasv Agarwal'    
   })
 })
 
