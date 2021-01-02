@@ -4,6 +4,7 @@ const hbs = require("hbs");
 const getTemprature = require("./temprature.js");
 
 const app = express();
+const port = process.env.PORT || 3000
 
 //Define paths
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -64,6 +65,6 @@ app.get("/*", (req, res) => {
   res.send("hehe");
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log("app is running");
 });

@@ -5,9 +5,10 @@ const getTemprature = (address, callback) => {
   request({ url: url, json: true }, (error, res) => {
     if (error) {
       return callback("error while getting weather", null)
-    } else if (res.body.cod == "404") {
+    } else if (res.body.cod != "200") {
       return callback(res.body.message, null)
     } else {
+      console.log(res.body)
       return callback(null, res.body.main.temp);
     }
   });
